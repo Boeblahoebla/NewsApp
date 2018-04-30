@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">NewsApp</string>
+
+    <!-- Text to display in the list when there are no news stories [CHAR LIMIT=NONE] -->
+    <string name="no_stories">No news stories to be shown.</string>
+
+    <!-- Text to display in the list when there is no internet connection [CHAR LIMIT=NONE] -->
+    <string name="no_internetconnection">No internet connection found.</string>
+
+    <!-- API key to use the web api of The Guardian -->
+    <string name="the_guardian_api_key">41b6b1c6&#8211;e183&#8211;4cb0&#8211;bbaa&#8211;e22b766e93b0</string>
+</resources>

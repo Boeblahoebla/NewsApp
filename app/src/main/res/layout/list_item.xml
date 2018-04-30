@@ -1,0 +1,58 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingTop="16dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingBottom="16dp">
+
+    <TextView
+        android:id="@+id/storyTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        tools:text="Tornado wreaks havoc in Reims" />
+
+    <TextView
+        android:id="@+id/storySection"
+        android:layout_below="@id/storyTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:layout_alignParentLeft="true"
+        tools:text="Severe weather"/>
+
+    <TextView
+        android:id="@+id/storyDate"
+        android:layout_below="@id/storyTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAlignment="textEnd"
+        android:layout_alignParentRight="true"
+        android:textSize="12sp"
+        tools:text="may 30th, 2018"/>
+
+    <ImageView
+        android:id="@+id/storyThumbnail"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_below="@id/storySection"
+        tools:src="https://media.guim.co.uk/8043cc9b16918bdb42c1f6fdd0b3b13096ba6f57/0_147_5355_3212/500.jpg"/>
+
+
+    <TextView
+        android:id="@+id/storyByline"
+        android:layout_below="@id/storyThumbnail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAlignment="textStart"
+        android:layout_alignParentLeft="true"
+        android:textSize="12sp"
+        tools:text="Written by Convect"/>
+
+
+</RelativeLayout>
