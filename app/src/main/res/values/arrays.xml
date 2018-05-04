@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- String array for the human readable labels -->
+    <string-array name="settings_order_by_labels">
+        <!-- all the label items go here -->
+        <item>@string/settings_order_by_newest_label</item>
+        <item>@string/settings_order_by_oldest_label</item>
+        <item>@string/settings_order_by_relevance_label</item>
+    </string-array>
+    <!-- String array for the values to save as preference -->
+    <string-array name="settings_order_by_values">
+        <!-- all the value items go here -->
+        <item>@string/settings_order_by_newest_value</item>
+        <item>@string/settings_order_by_oldest_value</item>
+        <item>@string/settings_order_by_relevance_value</item>
+    </string-array>
+</resources>

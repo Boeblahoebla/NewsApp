@@ -6,6 +6,7 @@ package com.example.android.newsapp;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.Image;
 import android.text.TextUtils;
 import android.util.Log;
 import org.json.JSONArray;
@@ -91,10 +92,33 @@ public final class QueryUtils {
                 // Extract the JSON object called "fields" and
                 // Extract its fields "byline" and "thumbnail"
                 JSONObject storyFields = currentStory.getJSONObject("fields");
-                String storyByLine = storyFields.getString("byline");
-                String thumbNailUrl = storyFields.getString("thumbnail");
 
-                // Create & download the bitmap with the use of the thumbNailUrl
+                // If byline is not available assign an empty string to its variable
+                String storyByLine = "";
+                // Try to fill the storyBylLne with information, read from the JSON data
+                try {
+                    storyByLine = storyFields.getString("byline");
+                } catch (JSONException e) {
+                    // If an error is thrown when executing any of the above statements
+                    // in the "try" block, catch the exception here, so the app doesn't crash.
+                    // Print a log message with the message from the exception.
+                    Log.e("QueryUtils", "Problem parsing the story byline", e);
+                }
+
+                // If the thumbNailUrl is not available assign an empty string to its variable
+                String thumbNailUrl = "";
+                // Try to fill the thumbNailUrl with inforamtion, read from the JSON data
+                try {
+                    thumbNailUrl = storyFields.getString("thumbnail");
+                } catch (JSONException e) {
+                    // If an error is thrown when executing any of the above statements
+                    // in the "try" block, catch the exception here, so the app doesn't crash.
+                    // Print a log message with the message from the exception.
+                    Log.e("QueryUtils", "Problem parsing the thumbnail image", e);
+                }
+
+                // Get the bitmap through the getStoryThumbnail method
+                // using its thumbNailUrl
                 Bitmap storyThumbnail = getStoryThumbnail(thumbNailUrl);
 
                 // Create a new {@link NewsStory} object with the web title,

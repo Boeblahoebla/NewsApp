@@ -1,4 +1,5 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="TypographyDashes">
+
     <string name="app_name">NewsApp</string>
 
     <!-- Text to display in the list when there are no news stories [CHAR LIMIT=NONE] -->
@@ -8,5 +9,53 @@
     <string name="no_internetconnection">No internet connection found.</string>
 
     <!-- API key to use the web api of The Guardian -->
-    <string name="the_guardian_api_key">41b6b1c6&#8211;e183&#8211;4cb0&#8211;bbaa&#8211;e22b766e93b0</string>
+    <string name="the_guardian_api_key">41b6b1c6-e183-4cb0-bbaa-e22b766e93b0</string>
+
+    <!-- There is only one item in the dropdown for the button in the top right corner -->
+    <string name="settings_menu_item">Settings</string>
+
+    <!-- The title of the settings -->
+    <string name="settings_title">News Settings</string>
+
+    <!-- String attributes for the EditText to enter the stories per page -->
+    <!-- .. Label -->
+    <string name="settings_stories_per_page_label">Stories per page</string>
+    <!-- .. key -->
+    <string name="settings_stories_per_page_key">stories_per_page</string>
+    <!-- .. default value -->
+    <string name="settings_stories_per_page_default">10</string>
+
+    <!-- String attributes for Order-By Preference -->
+    <!-- .. Label -->
+    <string name="settings_order_by_label">Order By</string>
+    <!-- .. Key -->
+    <string name="settings_order_by_key" translatable="false">order_by</string>
+    <!-- .. default value -->
+    <string name="settings_order_by_default">@string/settings_order_by_newest_value</string>
+
+    <!-- String attributes for Order-by most recent option -->
+    <!-- .. Label -->
+    <string name="settings_order_by_newest_label">Newest</string>
+    <!-- .. Value -->
+    <string name="settings_order_by_newest_value">newest</string>
+
+    <!-- String attributes for Order-by oldest option -->
+    <!-- .. Label -->
+    <string name="settings_order_by_oldest_label">Oldest</string>
+    <!-- .. Value -->
+    <string name="settings_order_by_oldest_value">oldest</string>
+
+    <!-- String attributes for Order-by relevance option -->
+    <!-- .. Label -->
+    <string name="settings_order_by_relevance_label">Relevance</string>
+    <!-- .. Value -->
+    <string name="settings_order_by_relevance_value">relevance</string>
+
+    <!-- String attributes for the URI builder -->
+    <string name="page_size">page-size</string>
+    <string name="show_fields">show-fields</string>
+    <string name="order_by">order-by</string>
+    <string name="api_key">api-key</string>
+    <string name="byline_thumbnail">byline,thumbnail</string>
+
 </resources>

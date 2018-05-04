@@ -79,7 +79,13 @@ public class NewsStoryAdapter extends ArrayAdapter<NewsStory>{
         // Assign the story thumbnail bitmap to its variable
         Bitmap thumb = currentStory.getThumbnailImage();
         // place the object bitmap as the image resource of the Image View
-        storyThumbnailImageView.setImageBitmap(thumb);
+        // If the object bitmap is not available, use the drawable icon which
+        // displays "no images available"
+        if (thumb != null){
+            storyThumbnailImageView.setImageBitmap(thumb);
+        } else {
+            storyThumbnailImageView.setImageResource(R.drawable.ic_not_available_icon);
+        }
 
         // Return the list item view that is now showing the appropriate data
         return listItemView;

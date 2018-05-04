@@ -43,7 +43,6 @@
         android:layout_below="@id/storySection"
         tools:src="https://media.guim.co.uk/8043cc9b16918bdb42c1f6fdd0b3b13096ba6f57/0_147_5355_3212/500.jpg"/>
 
-
     <TextView
         android:id="@+id/storyByline"
         android:layout_below="@id/storyThumbnail"
@@ -53,6 +52,4 @@
         android:layout_alignParentLeft="true"
         android:textSize="12sp"
         tools:text="Written by Convect"/>
-
-
 </RelativeLayout>

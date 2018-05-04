@@ -4,12 +4,16 @@ import android.app.LoaderManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.Loader;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -27,9 +31,7 @@ public class MainActivity extends AppCompatActivity implements
      * URL for news story data from The Guardian
      * */
     private static final String NEWS_STORY_URL =
-            "http://content.guardianapis.com/search?" +
-                    "order-by=newest&show-fields=byline,thumbnail&" +
-                    "api-key=41b6b1c6-e183-4cb0-bbaa-e22b766e93b0";
+            "http://content.guardianapis.com/search";
 
     /** Adapter for the list of news stories */
     private NewsStoryAdapter mAdapter;
@@ -124,10 +126,68 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     @Override
+    // This method initializes the contents of the Activity's options menu
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the Options menu we specified in the XML
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    // This method passes the Menu item that is selected
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Assign which item was selected to a variable called "id"
+        // There is only one item available here with the id "action_settings" defined
+        // in the XML
+        int id = item.getItemId();
+        // Match the id against known menu items
+        // to open the SettingsActivity with an intent
+        if (id == R.id.action_settings) {
+            Intent settingsIntent = new Intent(this, SettingsActivity.class);
+            startActivity(settingsIntent);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
     public Loader<List<NewsStory>> onCreateLoader(int i, Bundle bundle) {
         Log.d(LOG_TAG, "loader created through onCreateLoader");
-        // Create a new loader for the given URL
-        return new StoryLoader(MainActivity.this,NEWS_STORY_URL);
+
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+        // getString retrieves a String value from the preferences
+        // The second parameter is the default value for this preference
+        String storiesPerPage = sharedPrefs.getString(
+                getString(R.string.settings_stories_per_page_key),
+                getString(R.string.settings_stories_per_page_default));
+
+        String orderBy = sharedPrefs.getString(
+                getString(R.string.settings_order_by_key),
+                getString(R.string.settings_order_by_default));
+
+        // Generate a base URI to start from
+        Uri baseUri = Uri.parse(NEWS_STORY_URL);
+
+        // the buildUpon method prepares the baseUri that we just parsed so
+        // we can add query parameters to it in order to create the full URL
+        Uri.Builder uriBuilder = baseUri.buildUpon();
+
+        // Append query parameters and its values
+        uriBuilder.appendQueryParameter(getString(R.string.page_size),storiesPerPage);
+        uriBuilder.appendQueryParameter(getString(R.string.show_fields), getString(R.string.byline_thumbnail)); // "show-fields","byline,thumbnail"
+        uriBuilder.appendQueryParameter(getString(R.string.order_by),orderBy);
+        uriBuilder.appendQueryParameter(getString(R.string.api_key),getString(R.string.the_guardian_api_key));
+
+        // Full url for the storyloader
+        String fullUrl = uriBuilder.toString();
+
+        Log.d("fullUrl",fullUrl);
+
+        // Create a new loader for the given URL, created using the
+        // Base url and the attributes built by the URI builder
+        // http://content.guardianapis.com/search?page-size=15&api-key=41b6b1c6-e183-4cb0-bbaa-e22b766e93b0
+        return new StoryLoader(this, fullUrl);
     }
 
     @Override
